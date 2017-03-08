@@ -18,6 +18,8 @@ describe Squid::Configuration do
   sample_false = %w(0 f F false FALSE).sample
   sample_true =  %w(1 t T true TRUE).sample
 
+  it_behaves_like 'a configurable setting', method: 'axis_begin',  env: 'SQUID_AXIS_BEGIN',  default: 0,          sample_value: '1'
+  it_behaves_like 'a configurable setting', method: 'axis_end',    env: 'SQUID_AXIS_END',    default: 0,          sample_value: '1'
   it_behaves_like 'a configurable setting', method: 'baseline',    env: 'SQUID_BASELINE',    default: true,       sample_value: sample_false
   it_behaves_like 'a configurable setting', method: 'border',      env: 'SQUID_BORDER',      default: false,      sample_value: sample_true
   it_behaves_like 'a configurable setting', method: 'chart',       env: 'SQUID_CHART',       default: true,       sample_value: sample_false

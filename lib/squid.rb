@@ -12,6 +12,8 @@ module Squid
     #   the values for the series. Values are also a hash, where each key is
     #   a category, and each value the numerical value for that category.
     # @param [Hash] settings the option to customize the graph.
+    # @option settings [Boolean] :axis_begin (0) where the axis should begin.
+    # @option settings [Boolean] :axis_end (0) where the axis should end.
     # @option settings [Boolean] :baseline (true) whether to plot the baseline.
     # @option settings [Boolean] :border (false) whether to plot the border.
     # @option settings [Boolean] :chart (true) whether to plot the chart.

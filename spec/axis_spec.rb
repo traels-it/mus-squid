@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 describe Squid::Axis do
-  let(:options) { {steps: steps, stack: stack?, format: format} }
+  let(:options) { {steps: steps, stack: stack?, format: format, axis_begin: axis_begin, axis_end: axis_end} }
   let(:steps) { 4 }
   let(:stack?) { false }
   let(:format) { :integer }
+  let(:axis_begin) { 0 }
+  let(:axis_end) { 0 }
   let(:block) { nil }
   let(:series) { [[-1.0, 9.9, 3.0], [nil, 2.0, -50.0]] }
 

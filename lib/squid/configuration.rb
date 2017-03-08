@@ -49,6 +49,8 @@ module Squid
     end
 
     ATTRIBUTES = {
+      axis_begin:   {as: integer,        default: '0'},
+      axis_end:     {as: integer,        default: '0'},
       baseline:     {as: boolean,        default: 'true'},
       border:       {as: boolean,        default: 'false'},
       chart:        {as: boolean,        default: 'true'},

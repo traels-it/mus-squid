@@ -7,8 +7,8 @@ module Squid
     include Format
     attr_reader :data
 
-    def initialize(data, steps:, stack:, format:, &block)
-      @data, @steps, @stack, @format = data, steps, stack, format
+    def initialize(data, steps:, stack:, format:, axis_begin:, axis_end:, &block)
+      @data, @steps, @stack, @format, @axis_begin, @axis_end = data, steps, stack, format, axis_begin, axis_end
       @width_proc = block if block_given?
     end
 
@@ -40,13 +40,13 @@ module Squid
 
     def min
       if @data.any? && values.first && values.first.any?
-        [values.first.min, 0].min
+        [values.first.min, @axis_begin, 0].min
       end
     end
 
     def max
       if @data.any? && values.last && values.last.any?
-        [values.last.max, @steps].max
+        [values.last.max, @axis_end].max
       end
     end
 
