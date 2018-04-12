@@ -3,6 +3,7 @@ require 'active_support/core_ext/string/inflections' # for singularize
 
 require 'squid/axis'
 require 'squid/axis_label'
+require 'squid/axis_configuration'
 require 'squid/gridline'
 require 'squid/plotter'
 require 'squid/point'
@@ -97,10 +98,13 @@ module Squid
 
     def axis(first:, last:)
       series = @data.values[first, last].map(&:values)
-      options = {steps: steps, stack: stack?, format: formats[first],
-        axis_begin: axis_begin, axis_end: axis_end,
-        axis_begin_label: axis_begin_label, axis_end_label: axis_end_label}
+      options = {steps: steps, stack: stack?, format: formats[first], axis_config: axis_config}
       Axis.new(series, options) {|label| @plot.width_of label}
+    end
+
+    def axis_config
+      options = {begin: axis_begin, begin_label: axis_begin_label, end: axis_end, end_label: axis_end_label}
+      @axis_config ||= AxisConfiguration.new options
     end
 
     def bottom
