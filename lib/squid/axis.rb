@@ -7,8 +7,9 @@ module Squid
     include Format
     attr_reader :data
 
-    def initialize(data, steps:, stack:, format:, axis_begin:, axis_end:, &block)
+    def initialize(data, steps:, stack:, format:, axis_begin:, axis_end:, axis_begin_label:, axis_end_label:, &block)
       @data, @steps, @stack, @format, @axis_begin, @axis_end = data, steps, stack, format, axis_begin, axis_end
+      @axis_begin_label, @axis_end_label = axis_begin_label, axis_end_label
       @width_proc = block if block_given?
     end
 
@@ -25,7 +26,7 @@ module Squid
       else
         max.step(by: (min - max)/@steps.to_f, to: min)
       end
-      @labels ||= values.map{|value| format_for value, @format}
+      @labels ||= add_axis_labels_to values.map{|value| format_for value, @format}
     end
 
     def width
@@ -60,6 +61,14 @@ module Squid
 
     def approximate(number)
       number_to_rounded(number, significant: true, precision: 2).to_f
+    end
+
+    def add_axis_labels_to(labels)
+      return [] if labels.empty? || labels.one?
+      labels.dup.tap do |values|
+        values[0]  = "(#{@axis_end_label}) #{values[0]}"    unless @axis_end_label.empty?
+        values[-1] = "(#{@axis_begin_label}) #{values[-1]}" unless @axis_begin_label.empty?
+      end
     end
   end
 end

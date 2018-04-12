@@ -53,21 +53,23 @@ module Squid
     end
 
     ATTRIBUTES = {
-      axis_begin:   {as: integer,        default: '0'},
-      axis_end:     {as: integer,        default: '0'},
-      baseline:     {as: boolean,        default: 'true'},
-      border:       {as: boolean,        default: 'false'},
-      chart:        {as: boolean,        default: 'true'},
-      colors:       {as: array},
-      every:        {as: integer,        default: '1'},
-      formats:      {as: array(symbol)},
-      height:       {as: float,          default: '250'},
-      labels:       {as: array(boolean)},
-      legend:       {as: boolean,        default: 'true'},
-      line_widths:  {as: array(float)},
-      steps:        {as: integer,        default: '4'},
-      ticks:        {as: boolean,        default: 'true'},
-      type:         {as: symbol,         default: 'column'},
+      axis_begin:       {as: integer,        default: '0'},
+      axis_begin_label: {as: string,         default: nil},
+      axis_end:         {as: integer,        default: '0'},
+      axis_end_label:   {as: string,         default: nil},
+      baseline:         {as: boolean,        default: 'true'},
+      border:           {as: boolean,        default: 'false'},
+      chart:            {as: boolean,        default: 'true'},
+      colors:           {as: array},
+      every:            {as: integer,        default: '1'},
+      formats:          {as: array(symbol)},
+      height:           {as: float,          default: '250'},
+      labels:           {as: array(boolean)},
+      legend:           {as: boolean,        default: 'true'},
+      line_widths:      {as: array(float)},
+      steps:            {as: integer,        default: '4'},
+      ticks:            {as: boolean,        default: 'true'},
+      type:             {as: symbol,         default: 'column'},
     }
 
     attr_accessor *ATTRIBUTES.keys
