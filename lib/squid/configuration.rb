@@ -40,6 +40,10 @@ module Squid
       -> (value) { value.to_sym }
     end
 
+    def self.string
+      -> (value) { value.to_s }
+    end
+
     def self.float
       -> (value) { value.to_f }
     end
