@@ -12,8 +12,8 @@ module Squid
     def add_labels_to(values)
       return [] if values.empty? || values.one?
       values.dup.tap do |labels|
-        labels[-1] = "(#{@begin_label}) #{labels[-1]}" unless @begin_label.empty?
-        labels[0]  = "(#{@end_label}) #{labels[0]}"    unless @end_label.empty?
+        labels[-1] = "#{@begin_label} - #{labels[-1]}" unless @begin_label.empty?
+        labels[0]  = "#{@end_label} - #{labels[0]}"    unless @end_label.empty?
       end
     end
   end
