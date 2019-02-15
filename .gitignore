@@ -11,3 +11,6 @@ manual.pdf
 readme.pdf
 /_site
 screenshots.pdf
+
+# dotenv specific files
+*.env*
