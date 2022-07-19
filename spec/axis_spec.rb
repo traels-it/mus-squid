@@ -10,7 +10,7 @@ describe Squid::Axis do
   let(:series) { [[-1.0, 9.9, 3.0], [nil, 2.0, -50.0]] }
 
   describe '#labels' do
-    subject(:axis) { Squid::Axis.new series, options }
+    subject(:axis) { Squid::Axis.new series, **options }
     let(:labels) { axis.labels }
 
     describe 'given 0 steps' do
@@ -83,12 +83,12 @@ describe Squid::Axis do
     let(:width) { axis.width }
 
     describe 'given no block, returns 0' do
-      subject(:axis) { Squid::Axis.new series, options }
+      subject(:axis) { Squid::Axis.new series, **options }
       it { expect(width).to be_zero }
     end
 
     describe 'given no block, returns the maximum value of the block' do
-      subject(:axis) { Squid::Axis.new series, options, &block }
+      subject(:axis) { Squid::Axis.new series, **options, &block }
       let(:block) { -> (value) { value.to_i } }
       it { expect(width).to eq 9 }
     end
