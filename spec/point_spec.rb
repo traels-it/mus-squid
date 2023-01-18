@@ -59,5 +59,19 @@ describe Squid::Point do
         expect(points.last.map &:y).to eq [nil, 89.95, 0.0]
       end
     end
+
+    context 'given a series containing a value of zero' do
+      let(:series) { [[0, 109.9, 30.0], [nil, 20.0, -50.0]] }
+
+      it 'offsets y to compensate for minimum height' do
+        # First y-value is lifted from 25 to 27 to match minimum height
+        expect(points.first.map &:y).to eq [27.0, 79.95, 40.0]
+      end
+
+      it 'ensures a minimum height' do
+        # First height is lifted from 0 to 2 to ensure it's visible on graph
+        expect(points.first.map &:height).to eq [2.0, 54.95, 15.0]
+      end
+    end
   end
 end
