@@ -73,8 +73,8 @@ describe Squid::Axis do
 
     describe 'given :float format' do
       let(:format) { :float }
-      it 'returns the labels as floats with all significant digits' do
-        expect(labels).to eq %w(9.9 -5.1 -20 -35 -50)
+      it 'returns the labels as floats with one decimal number and ignoring significant digits' do
+        expect(labels).to eq %w(9.9 -5.1 -20.0 -35.0 -50.0)
       end
     end
   end
