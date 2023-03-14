@@ -25,7 +25,7 @@ module Squid
       else
         max.step(by: (min - max)/@steps.to_f, to: min)
       end
-      @labels ||= @axis_config.add_labels_to values.map{|value| format_for value, @format}
+      @labels ||= @axis_config.add_labels_to formatted_axis_labels(values)
     end
 
     def width
@@ -60,6 +60,15 @@ module Squid
 
     def approximate(number)
       number_to_rounded(number, significant: true, precision: 2).to_f
+    end
+
+    def formatted_axis_labels(values)
+      # When no axis labels have significant zeros we draw them as integers
+      if @format == :float && values.all? { |value| (value % 1).zero? }
+        values.map { |value| format_for value, :integer }
+      else
+        values.map { |value| format_for value, @format }
+      end
     end
   end
 end

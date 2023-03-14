@@ -76,6 +76,14 @@ describe Squid::Axis do
       it 'returns the labels as floats with one decimal number and ignoring significant digits' do
         expect(labels).to eq %w(9.9 -5.1 -20.0 -35.0 -50.0)
       end
+
+      describe 'when axis labels only contains floats with insignificant zeros' do
+        let(:series) { [[-1.0, 0.0, 1.0], [-2.0, 0.0, 2.0]] }
+
+        it 'renders them as integers' do
+          expect(labels).to eq %w(2 1 0 -1 -2)
+        end
+      end
     end
   end
 
