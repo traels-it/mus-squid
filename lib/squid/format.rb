@@ -24,7 +24,7 @@ module Squid
     end
 
     def number_to_float(value)
-      float = number_to_rounded value, significant: true, precision: 2
+      float = number_to_rounded value, significant: false, precision: 1
       number_to_delimited float
     end
 
