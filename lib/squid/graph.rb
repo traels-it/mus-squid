@@ -13,7 +13,7 @@ module Squid
   # @private
   class Graph
     extend Settings
-    has_settings :axis_begin, :axis_end, :axis_begin_label, :axis_end_label
+    has_settings :axis_begin, :axis_end, :axis_begin_label, :axis_end_label, :axis_labels
     has_settings :baseline, :border, :chart, :colors, :every, :formats, :height
     has_settings :legend, :line_widths, :steps, :ticks, :type, :labels
 
@@ -103,7 +103,7 @@ module Squid
     end
 
     def axis_config
-      options = {begin: axis_begin, begin_label: axis_begin_label, end: axis_end, end_label: axis_end_label}
+      options = {begin: axis_begin, begin_label: axis_begin_label, end: axis_end, end_label: axis_end_label, labels: axis_labels}
       @axis_config ||= AxisConfiguration.new options
     end
 

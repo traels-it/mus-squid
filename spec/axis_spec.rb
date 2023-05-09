@@ -5,7 +5,8 @@ describe Squid::Axis do
   let(:steps) { 4 }
   let(:stack?) { false }
   let(:format) { :integer }
-  let(:axis_config) { Squid::AxisConfiguration.new(begin: 0, begin_label: '', end: 0, end_label: '') }
+  let(:axis_labels) { nil }
+  let(:axis_config) { Squid::AxisConfiguration.new(begin: 0, begin_label: '', end: 0, end_label: '', labels: axis_labels) }
   let(:block) { nil }
   let(:series) { [[-1.0, 9.9, 3.0], [nil, 2.0, -50.0]] }
 
@@ -40,6 +41,15 @@ describe Squid::Axis do
       it 'ranges the labels from the cumulative min and max of all series' do
         expect(labels.first).to eq '12'
         expect(labels.last).to eq '-50'
+      end
+    end
+
+    describe 'given custom axis labels' do
+      let(:series) { [[0, 1, 2]] }
+      let(:axis_labels) { ["Low", "Mid", "High"] }
+
+      it 'displays the custom labels instead of inferring values' do
+        expect(labels).to eq %w(High Mid Low)
       end
     end
 
