@@ -57,6 +57,13 @@ describe Squid::Axis do
       end
     end
 
+    describe 'given :percentage_without_precision format' do
+      let(:format) { :percentage_without_precision }
+      it 'returns the labels as percentages with no significant digits' do
+        expect(labels).to eq %w(10% -5% -20% -35% -50%)
+      end
+    end
+
     describe 'given :currency format' do
       let(:format) { :currency }
       it 'returns the labels as currency with 2 significant digits' do
