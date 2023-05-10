@@ -29,7 +29,11 @@ module Squid
     end
 
     def width
-      @width ||= labels.map{|label| label_width label}.max || 0
+      @width ||= if val = labels.map{|label| label_width label}.max
+        [val, 70].min
+      else
+        0
+      end
     end
 
   private
