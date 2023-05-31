@@ -5,7 +5,8 @@ describe Squid::Axis do
   let(:steps) { 4 }
   let(:stack?) { false }
   let(:format) { :integer }
-  let(:axis_config) { Squid::AxisConfiguration.new(begin: 0, begin_label: '', end: 0, end_label: '') }
+  let(:axis_labels) { nil }
+  let(:axis_config) { Squid::AxisConfiguration.new(begin: 0, begin_label: '', end: 0, end_label: '', labels: axis_labels) }
   let(:block) { nil }
   let(:series) { [[-1.0, 9.9, 3.0], [nil, 2.0, -50.0]] }
 
@@ -43,6 +44,15 @@ describe Squid::Axis do
       end
     end
 
+    describe 'given custom axis labels' do
+      let(:series) { [[0, 1, 2]] }
+      let(:axis_labels) { ["Low", "Mid", "High"] }
+
+      it 'displays the custom labels instead of inferring values' do
+        expect(labels).to eq %w(High Mid Low)
+      end
+    end
+
     describe 'given :integer format' do
       let(:format) { :integer }
       it 'returns the labels as integers' do
@@ -54,6 +64,13 @@ describe Squid::Axis do
       let(:format) { :percentage }
       it 'returns the labels as percentages with 1 significant digit' do
         expect(labels).to eq %w(9.9% -5.1% -20.0% -35.0% -50.0%)
+      end
+    end
+
+    describe 'given :percentage_without_precision format' do
+      let(:format) { :percentage_without_precision }
+      it 'returns the labels as percentages with no significant digits' do
+        expect(labels).to eq %w(10% -5% -20% -35% -50%)
       end
     end
 

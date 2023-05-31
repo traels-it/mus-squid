@@ -57,6 +57,7 @@ module Squid
       axis_begin_label: {as: string,         default: nil},
       axis_end:         {as: integer,        default: '0'},
       axis_end_label:   {as: string,         default: nil},
+      axis_labels:      {as: array},
       baseline:         {as: boolean,        default: 'true'},
       border:           {as: boolean,        default: 'false'},
       chart:            {as: boolean,        default: 'true'},
