@@ -67,8 +67,6 @@ module Squid
     end
 
     def formatted_axis_labels(values)
-      @axis_config.labels if @axis_config.labels.present?
-
       # When no axis labels have significant zeros we draw them as integers
       if @format == :float && values.all? { |value| (value % 1).zero? }
         values.map { |value| format_for value, :integer }
