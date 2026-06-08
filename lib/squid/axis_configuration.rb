@@ -12,7 +12,7 @@ module Squid
 
     def add_labels_to(values)
       return [] if values.empty? || values.one?
-      return labels.reverse if labels.present?
+      return labels.reverse if labels
 
       values.dup.tap do |labels|
         labels[-1] = "#{@begin_label} - #{labels[-1]}" unless @begin_label.empty?
